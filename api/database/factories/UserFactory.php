@@ -15,7 +15,7 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'name' => fake()->name(),
@@ -25,6 +25,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'longitude' => fake()->longitude(),
             'latitude' => fake()->latitude(),
+            'profile_path' => 'profiles/' . rand(1, 5) . '.jpg'
         ];
     }
 }
