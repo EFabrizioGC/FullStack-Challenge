@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Services\OpenWeatherService;
+use Illuminate\Support\Facades\Cache;
 
 class UserWeatherController extends Controller
 {
@@ -15,10 +16,8 @@ class UserWeatherController extends Controller
 
     public function __invoke(User $user)
     {
-        return response()->json($this->SDK->getWeatherWithCoordinates($user->longitude, $user->latitude));
-
-//        Cache::store('redis')->remember($user->email, self::REMEMBER_MINUTES, function () {
-//            return OpenWeatherSDK::weatherData()
-//        });
+        return Cache::store('redis')->remember($user->email, self::REMEMBER_MINUTES, function () use ($user) {
+            return response()->json($this->SDK->getWeatherWithCoordinates($user->longitude, $user->latitude));
+        });
     }
 }
