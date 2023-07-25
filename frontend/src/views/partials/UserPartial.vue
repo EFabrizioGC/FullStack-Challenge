@@ -78,6 +78,9 @@ function pageChange(currentPage: number) {
     @close-modal="closeModal"
   >
     <div class="flex flex-col items-center p-4">
+      <h1 class="font-bold text-2xl">
+        {{ weatherData.name ? weatherData.name : "Unknown Town" }}
+      </h1>
       <img
         :src="
           'https://openweathermap.org/img/wn/' +
@@ -87,7 +90,7 @@ function pageChange(currentPage: number) {
         :alt="weatherData.weather[0].main"
       />
 
-      <h1 class="text-xl font-bold">{{ weatherData.weather[0].main }}</h1>
+      <h1 class="text-lg font-semibold">{{ weatherData.weather[0].main }}</h1>
       <p class="capitalize text-sm">{{ weatherData.weather[0].description }}</p>
 
       <div>{{ weatherData.main.temp }} °F</div>
