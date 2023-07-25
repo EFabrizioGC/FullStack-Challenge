@@ -6,7 +6,7 @@ class UserApi {
   }
 
   show(id: number) {
-    return requestHandler.get(`users/${id}`);
+    return requestHandler.get(`users/${id}/weather`);
   }
 }
 
