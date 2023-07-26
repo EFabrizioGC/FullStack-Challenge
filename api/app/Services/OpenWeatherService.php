@@ -21,7 +21,6 @@ final class OpenWeatherService
         if ($client) {
             $this->client = $client;
         }
-
     }
 
     public function getWeatherWithCoordinates(string $long, string $lat): array
