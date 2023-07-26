@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Log;
 
@@ -12,7 +13,7 @@ final class OpenWeatherService
     private string $apiKey;
     private const BASE_URL = 'https://api.openweathermap.org';
 
-    public function __construct(Client $client = null)
+    public function __construct(ClientInterface $client = null)
     {
         $this->client = new Client(['base_uri' => self::BASE_URL]);
         $this->apiKey = config('services.open-weather.key');
@@ -20,6 +21,7 @@ final class OpenWeatherService
         if ($client) {
             $this->client = $client;
         }
+
     }
 
     public function getWeatherWithCoordinates(string $long, string $lat): array
