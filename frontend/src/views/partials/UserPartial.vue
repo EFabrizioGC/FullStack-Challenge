@@ -52,6 +52,23 @@ function pageChange(currentPage: number) {
           <h5 class="mb-1 text-xl font-medium text-gray-900">
             {{ user.name }}
           </h5>
+
+          <div class="flex flex-col items-center">
+            <img
+              :src="
+                'https://openweathermap.org/img/wn/' +
+                user.weather.weather[0].icon +
+                '@2x.png'
+              "
+              :alt="user.weather.weather[0].main"
+            />
+
+            <h1 class="text-lg font-semibold">
+              {{ user.weather.weather[0].main }}
+            </h1>
+
+            <div>{{ user.weather.main.temp }} °F</div>
+          </div>
           <div class="flex mt-4 space-x-3 md:mt-4">
             <ButtonPrimary @click.stop="open(user.id)">
               Check Weather

@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Console\Commands\CacheUsersWeatherCommand;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(200)->create();
+        User::factory(20)->create();
+
+        Artisan::call(CacheUsersWeatherCommand::class);
     }
 }

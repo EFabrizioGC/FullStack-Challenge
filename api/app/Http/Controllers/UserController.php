@@ -13,6 +13,12 @@ class UserController extends Controller
 
     public function __invoke()
     {
-        return response()->json(User::query()->paginate(10));
+        $users = User::query()->paginate(10);
+
+        foreach ($users as $user) {
+            $user->weather = $this->userService->getUserWeather($user);
+        }
+
+        return response()->json($users);
     }
 }
